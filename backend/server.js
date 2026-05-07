@@ -25,7 +25,14 @@ app.use('/api/cart',cartRouter)
 app.use('/api/order',orderRouter)
 
 app.get('/',(req,res)=>{
-    res.send("API Working")
+    res.send("Backend running")
 })
 
-app.listen(port, ()=> console.log('Server started on PORT : '+ port))
+// ONLY for local development
+if (process.env.NODE_ENV !== "production") {
+    app.listen(port, () => {
+        console.log('Server started on PORT : ' + port)
+    })
+}
+
+export default app
