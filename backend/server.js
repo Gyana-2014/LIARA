@@ -11,6 +11,7 @@ import orderRouter from './routes/orderRoute.js'
 // App Config
 const app = express()
 const port = process.env.PORT || 4000
+
 connectDB()
 connectCloudinary()
 
@@ -19,20 +20,18 @@ app.use(express.json())
 app.use(cors())
 
 // api endpoints
-app.use('/api/user',userRouter)
-app.use('/api/product',productRouter)
-app.use('/api/cart',cartRouter)
-app.use('/api/order',orderRouter)
+app.use('/api/user', userRouter)
+app.use('/api/product', productRouter)
+app.use('/api/cart', cartRouter)
+app.use('/api/order', orderRouter)
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
     res.send("Backend running")
 })
 
-// ONLY for local development
-if (process.env.NODE_ENV !== "production") {
-    app.listen(port, () => {
-        console.log('Server started on PORT : ' + port)
-    })
-}
+// START SERVER
+app.listen(port, () => {
+    console.log('Server started on PORT : ' + port)
+})
 
 export default app
